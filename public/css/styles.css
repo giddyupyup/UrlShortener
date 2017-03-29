@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+.container {
+    width: 900px;
+    margin: 0px auto;
+    padding: 50px 0px;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.container > h1 {
+    margin-bottom: 40px;
+}
+.container > h1 > span {
+    padding: 10px;
+    font-weight: 600;
+    background: #D6E5FF;
+    color: #151619;
+}
+
+.form_container {
+    margin-bottom: 50px;
+}
+
+.shortener_container {
+    padding: 20px 0px;
+}
+
+.shortener_container .input-group {
+    width: 500px;
+}
+
+.shorten{
+    font-weight: bold;
+}
+
+.shorten:hover {
+    background: #8CF0DB
+}
