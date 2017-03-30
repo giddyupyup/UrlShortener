@@ -37,3 +37,19 @@
 .shorten:hover {
     background: #8CF0DB
 }
+
+#show_shortcode {
+    width: 415px;
+    background: #fff;
+    position: absolute;
+    z-index: 1001;
+    top: 190px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.ebuttons {
+    position: relative;
+}

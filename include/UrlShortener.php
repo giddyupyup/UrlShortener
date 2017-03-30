@@ -13,9 +13,7 @@ class UrlShortener {
     
     private static $chars = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static $table = "short_urls";
-    private static $checkUrlExists = true;
     private $conn;
-    private $timestamp;
     
     
     public function __construct($conn) {
@@ -39,17 +37,10 @@ class UrlShortener {
             throw new \Exception("URL does not have a valid format.");
         }
         
-        if (self::$checkUrlExists) {
-            if (!$this->verifyUrlExists($url)) {
-                throw new \Exception("URL does not appear to exist.");
-            }
-        }
-        
         $shortCode = $this->urlExistInDb($url);
         if ($shortCode == false) {
             $shortCode = $this->createShortCode($url);
         }
-        
         return $shortCode;
     }
     
@@ -81,20 +72,6 @@ class UrlShortener {
     //Method to validate the URL Format
     private function validateUrlFormat($url) {
         return filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED);
-    }
-    
-    //Method to check if the URL exists on the Web
-    private function verifyUrlExists($url) {
-        $cUrl = curl_init();
-        curl_setopt($cUrl, CURLOPT_URL, $url);
-        curl_setopt($cUrl, CURLOPT_NOBODY, 1);
-        curl_setopt($cUrl, CURLOPT_RETURNTRANSFER, 1);
-        curl_exec($cUrl);
-        
-        $resp = curl_getinfo($cUrl, CURLINFO_HTTP_CODE);
-        curl_close($cUrl);
-        
-        return (!empty($resp) && $response != 404);
     }
     
     //Method to check if the URL exist in DB
